@@ -67,5 +67,22 @@ _much ommitted from this section_
 * includes a debugger for COBOL programs running on a CICS (Customer Information Control System) region
 * also tools to enable developers to access mainframe data sets and CA Endevor code repos (like git)
 
-_pick up from pg 30, section 4.6_
+## Copybook Support
+* Copybook - pieces of code stored in seperate data sets, referenced in a program
+* Set up and configure a ZOWE CLI `zosmf` profile to be able to download all copybooks referenced in a program from the mainframe to a local directory
 
+# Zowe CLI and Plugins
+* An open source CLI for the mainframe
+* Provides: Remote interaction with z/OS data sets and jobs, Unix System Services files, TSO [Time Sharing Option, allows user sessions] and Console commands, and provisioning services.
+* A bridge tool between distributed systems and the mainframe (e.g. allows multiple languages to run on the mainframe)
+* Help automate the build deployment and testing for COBOL
+
+* command structure: `zowe <group> <action> <object>`, followed by parameters and command options
+  * e.g. `zowe files list data-set "HLQ.*"  
+  Lists data-sets matching a pattern of "HLQ.*"
+* append `-h`, `--help-web` or `--hw` to any command to find out more
+
+### Profiles
+* Where connection information is stored
+
+_just about to start 'Learning COBOL' on page 48_
