@@ -36,10 +36,36 @@ Zowe Explorer - and open-source extension for VSCode that lets developers and sy
 _Further sections ommitted - just instructions for working with Zowe_
 
 # VSCode with Z Open Editor
-## What is it?
+
+## Introduction
+
+### What is it?
 * fee extension to VSC
 * Support for COBOL, PL/I and JCL languages
   * PL/I - Programming Language 1, a procedural, imperative computer programming language
   * JCL - Job Control Language, scripting languages used on the IBM mainframe OSs
 * Also content assistance for apps that call CICS, MQ, IMS and DB2 APIs
-* Code can reside on
+* Code can reside in a source code repo, locally in file or on z/OS
+
+### Role of the Language Server Protocol
+* LSP - a common description of how features of the code editor should be implemented for spoecific languages
+* Languages with an LSP server can be used inside any code editor
+
+## Basic Editing
+
+### Known File Extensions
+* possible options: .COBOL .CBL .COB .COBCOPY .COPYBOOK .COPY
+* Applied to both local files and files held in a Partitioned Data Set (PDS), like a folder on the mainframe
+
+### Margins
+* 5 columns: sequence numbers, comment / continuation characters, area A and area B
+
+_much ommitted from this section_
+
+
+# VSCode with Code4z Extension
+* includes a debugger for COBOL programs running on a CICS (Customer Information Control System) region
+* also tools to enable developers to access mainframe data sets and CA Endevor code repos (like git)
+
+_pick up from pg 30, section 4.6_
+
