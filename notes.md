@@ -85,4 +85,107 @@ _much ommitted from this section_
 ### Profiles
 * Where connection information is stored
 
-_just about to start 'Learning COBOL' on page 48_
+# Basic COBOL
+
+* "Enterprise COBOL" - the name for the COBOL programming language compiled an dexecuted on IBM Z Operating Systems, z/OS
+* Native support for JSON, XML and Java
+
+## What must a novice COBOL programmer know to be an experienced COBOL programmer?
+
+### What are the coding rules and the reference format?
+
+* source code is column dependent (5 columns)
+* **Sequence Number Area** - (1 to 6) - blank or reserved for line sequence numbers
+* **Indicator Area** - (7) -
+  * Comment line (usually with '*')
+  * Continuation line (usually '-')
+  * Debugging line ('D' or 'd')
+  * Source listing formatting ('/')
+* **Area A** - (8 to 11) -
+  * Level indicators
+  * Declarative items
+  * Division, Section or Paragraph headers
+  * Paragraph names
+* **Area B** - (12 to 72) -
+  * Entries, sentences, statements and clauses
+  * Continuation lines
+* **Identification Area** - (73 to 80) -
+  * Ignored by the compiler
+  * Can be used by the programmer for any purpose
+
+### What is the structure of COBOL?
+* COBOL is a hierarchy structure consisting and in the top-down order of:
+  * Divisions
+  * Sections
+  * Paragraphs
+  * Sentences
+  * Statements
+
+### What are COBOL reserved words?
+*  PERFORM, MOVE, COMPUTE, IF, THEN, ELSE, EVALUATE, PICTURE, etc..
+* https://www.ibm.com/support/knowledgecenter/zh/SSZJPZ_9.1.0/com.ibm.swg.im.iis.ds.mfjob.dev.doc/topics/r_dmnjbref_COBOL_Reserved_Words.html
+
+### What is a COBOL statement?
+* Also called *verbs*
+* Control flow, I/O, data manipulation, report writer
+* Statements exist only within the Procedure Division - The program processing logic
+
+### What is the meaning of a scope terminator?
+* Explicit - marks the end of certain Procedure Division statements with "END-" COBOL reserved word
+* For COBOL verbs that are always conditional (IF, EVALUATE) or that have a conditional clause (COMPUTE, PERFORM, READ) e.g. "END-PERFORM", "END-READ"
+* Implicit - '.' character, ends the scope of all previous statements that have not been ended
+
+### What is a COBOL sentence?
+* one or more “Statements” followed by a period (.), scope terminator
+
+### What is a COBOL paragraph?
+* A user-defined or predefined name followed by a period
+* Consists of zero or more sentences
+* the subdivision of a “Section” or “Division”
+
+### What is a COBOL section?
+* A user-defined or a predefined name followed by a period
+* consists of zero or more sentences
+* a collection of paragraphs
+
+e.g.
+
+*-------------------------
+ PROCEDURE DIVISION                 # Division / Section
+*-------------------------
+ OPEN-FILES.                        # Paragraph
+     OPEN INPUT  ACCT-REC.          # Sentence
+     OPEN OUTPUT PRINT-LINE.        # Sentence
+
+
+## COBOL Divisions
+
+* Divisions are subdivided into Sections
+* Sections are subdivided into Paragraphs
+* Paragraphs are subdivided into Sentences
+* Sentences consist of Statements
+* Statements begin with COBOL reserved words and can be subdivided into "Phrases"
+
+###  What are the four Divisions of COBOL?
+
+#### IDENTIFICATION DIVISION
+* Identifies the program with a name
+* Optionally gives other idenntifying information
+* Author name, program compiled date, etc.
+
+#### ENVIRONMENT DIVISION
+* Describes the aspects of the program that depend on the computing environment
+* Computer configuration, inputs and outputs
+
+#### DATA DIVISION
+* Where data characteristics are defined in one of the following
+  * **FILE SECTION** Defines data used in Input-Output operations
+  * **LINKAGE SECTION** Describes data from another program. When defining data developed for internal processing.
+  * **WORKING-STORAGE SECTION** Storage allocated and remaining for the life of the program.
+  * **LOCAL-STORAGE SECTION** Storage allocated each time a program is called and de-allocated when the program ends
+
+#### PROCEDURE DIVISION
+* Instructions related to manipulation of data
+* Sub-routines etc.
+
+*Pick up on pg 52: PROCEDURE DIVISION explained*
