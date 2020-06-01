@@ -188,4 +188,35 @@ e.g.
 * Instructions related to manipulation of data
 * Sub-routines etc.
 
-*Pick up on pg 52: PROCEDURE DIVISION explained*
+## The PROCEDURE division explained
+* Statements in the prcedure division -> actions to be taken by the program
+* **Section** - logical subdivision of processing logic
+  * header + 1 or more paragraphs.
+  * Can be the subject of a `PERFORM` statement
+  * e.g. section for declaratives, a set of one or more special purpose instructions
+  * e.g. description of inputs and outputs
+  * At the beginning of the procedure division, `DECLARATIVES` and `END DECLARATIVES`
+* **Paragraph** - subdivision of a section, procedure or program, can be the subject of a statement
+* **Sentence** - a series of one or more COBOL statements ending with a period
+* **Statement** - an action to be taken by the program e.g. adding 2 numbers
+* **Phrase** - a small part of a statement (like an adjective or preposition in English)
+
+## Lab - Zowe Explorer VSCode, Zowe CLI
+* Note, I changed my password using Zih in Slack and managed to connect to the server
+* Saving work in .\Mainframe Files\...
+
+### Zowe CLI Commands
+* `zowe profiles set zosmf COBOL-Tutorial`
+* `zowe zosmf check status`
+* `zowe files list ds "Z81547.*` - list files in the dataset of the given pattern
+* `zowe files list am "Z81547.CBL"` - list all members of the given dataset
+* `zowe files download am "Z81547.CBL" -e ".cbl"` - download members of the given dataset. -e = --extension, save the local files with the specified file extension
+* `zowe jobs submit ds "Z81547.JCL(HELLO)" --vasc` - submit a job (as JCL) contained in a dataset (Z81547.JCL), wait for the job to complete and print all output from the job (--vasc, --view-all-spool-content)
+* `zowe jobs submit ds "Z81547.JCL(HELLO)" --wfo` - submit job and wait for OUTPUT status before completing the command
+* `zowe jobs list sfbj JOB08291` - Given a z/OS job JOBID, list the spool files (DDs) for a z/OS job on the JES/spool queues.
+* `zowe jobs view sfbi JOB08291 105` - View the contents of a spool file from a z/OS job, given a jobid and fileid
+* `zowe jobs submit ds "Z81547.JCL(HELLO)" -d` - Do the job and download the spool content
+
+### Zowe CLI - Programatic Usage
+* Automate submitting the JCL to compile, link and run the COBOL program and downloading the spool output
+* done - see '.\zowe-cli-automation\package.json'

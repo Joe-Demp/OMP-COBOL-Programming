@@ -1,0 +1,11 @@
+{
+  "name": "zowe-cli-automation",
+  "version": "1.0.0",
+  "description": "Automation for COBOL Program",
+  "main": "index.js",
+  "scripts": {
+    "clg": "zowe jobs submit ds 'Z81547.JCL(HELLO)' -d ."
+  },
+  "author": "Joseph Dempsey",
+  "license": "ISC"
+}
