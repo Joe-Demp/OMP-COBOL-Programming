@@ -220,3 +220,127 @@ e.g.
 ### Zowe CLI - Programatic Usage
 * Automate submitting the JCL to compile, link and run the COBOL program and downloading the spool output
 * done - see '.\zowe-cli-automation\package.json'
+
+# Data division
+
+# Variables / Data-items
+
+* Variable or Data-item, a name chosen by the COBOL programmer.
+* The variable name also known as the data-name
+* Restrictions:
+  * Must not be a COBOL reserved word
+  * Must not contain a space
+  * Contains letters (A-Z), digits(0-9), underscores and hyphens
+  * Maximum length of 30 characters
+  * hyphen can't be the first or last character
+  * underscore can't be the first character
+
+* When COBOL is compiled, the compiler expects a named COBOL variable to possess attributes length and data type.
+* A variable, at runtime, represents a defined area of processing memory where the memory location has a maximum length and designated data type.
+
+* Common COBOL data types:
+  * Numeric (0-9)
+  * Alphabetic (A-Z), (a-z), or a space
+  * Alphanumeric Numeric and Alphabetic Combination
+
+## PICTURE Clause
+
+* COBOL reserved word `PICTURE` , determines the length and data type of a programmer selected variable name.
+* Data types described by `PIC`, commonly referred to as `PIC` clauses.
+* e.g.
+  * `PIC 9` - single numeric value where length is one
+  * `PIC 9(4)` - four numeric values where length is four
+  * `PIC X` - single alphanumeric (character) value where length is one 
+  * `PIC X(4)` - four alphanumeric values where length is four
+
+### PIC clause symbols and data types
+
+* max length determined by data type and compiler options
+* Alphabetic only data type described by `PIC A`.
+
+Other symbols:
+```
+B E G N P S U V Z 0 / + - , . * CR DB cs
+```
+where `cs` is any valid currency symbol e.g. $
+
+* All described here: https://www.ibm.com/support/knowledgecenter/SS6SG3_4.2.0/com.ibm.entcobol.doc_4.2/PGandLR/igy3lr50.pdf
+
+### Coding COBOL variable / data-item names
+
+* Done in the DATA DIVISION
+* Code describing a variable name is accomplished using a level number and a picture clause
+* **Level Number** - A hierarchy of fields in a record
+* **Variable name / Data-item name** - Assigns a name to each field to be referenced in the program and must be unique within the program
+* **Picture Clause** - For data type checking
+
+### PICTURE clause character-string representation
+
+* e.g.
+  * `PIC 9(4)V99` - a clause to hold value `1123.45`. `V` represents the decimal position
+  * `PIC $9,999V99` - a clause to hold a value like `$1,123.45`.
+
+## Literals
+* A constant data value
+* e.g. `DISPLAY "HELLO WORLD!"` is a COBOL reserved word followed by a literal
+
+### Figurative constants
+* Reserved words that name and refer to specific constant values
+* e.g.
+  * ZERO, ZEROS, ZEROES
+  * SPACE, SPACES
+  * HIGH-VALUE, HIGH-VALUES
+  * LOW-VALUE, LOW-VALUES
+  * QUOTE, QUOTES
+  * NULL, NULLS
+
+### Data relationships
+* Defined in the `DATA DIVISION` - level indicators and level-numbers
+* **Level indicators** - include a descriptive entry; identifies each file in a program
+* **Level-numbers** - also include a descriptive entry; inidcates the properties of specific data; can be used to describe the data hierarchy
+
+### Level numbers
+
+* The structured level number hierarchic relationship is available to all `DATA DIVISION` sections.
+* Programmer chosen numbers
+
+### Levels of data
+
+* Records can be subdivided to provide more detailed data references
+* Level number: a one or two digit number between 01 and 49 or one of : 66, 77, 88
+* Relationship between level numbers in a group item defines the hierarchy of data within that group.
+* Group items include all group and elementary items that follow it, until a level number less than or equal to the level number of the group is encountered
+
+## MOVE and COMPUTE
+
+* Reserved words that alter the value of variable names.
+e.g.
+```COBOL
+ IDENTIFICATION DIVISION
+ PROGRAM-ID PAYROL00
+ DATA DIVISION
+ WORKING STORAGE SECTION
+****** Variables for the report
+ 77  WHO         PIC X(15)
+ 77  RATE        PIC 9(3)
+ 77  HOURS       PIC 9(3)
+ 77  GROSS-PAY   PIC 9(5)
+
+ PROCEDURE DIVISION
+****** COBOL MOVE statements - Literal Text to Variables
+     MOVE "Captain COBOL" TO WHO
+     MOVE 19 TO HOURS
+     MOVE 23 TO RATE
+****** Calculation using COMPUTE
+     COMPUTE GROSS-PAY = HOURS * RATE
+****** DISPLAY statements
+     DISPLAY "Name: " WHO
+
+****** etc. etc.
+```
+
+## Lab
+
+* Dealt with a new program (PAYROL00) and dealt with compile errors
+
+*Pick up with chapter 10 - File Handling*
